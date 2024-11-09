@@ -9,23 +9,21 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if not detectedAreas.is_empty():
-		print(detectedAreas)
 	pass
 
 # AREA NODE SIGNALS
 # ENTER
 func _on_great_area_back_area_entered(area):
 	if area.get_name() != "AreaPedalCue": return
-	detectedAreas["GB"] = ''
+	detectedAreas["GB"] = area
 
 func _on_great_area_front_area_entered(area):
 	if area.get_name() != "AreaPedalCue": return
-	detectedAreas["GF"] = ''
+	detectedAreas["GF"] = area
 
 func _on_perfect_area_area_entered(area):
 	if area.get_name() != "AreaPedalCue": return
-	detectedAreas["P"] = ''
+	detectedAreas["P"] = area
 
 # EXIT
 func _on_great_area_back_area_exited(area):

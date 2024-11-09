@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scripts/pedal_column.gd" id="1_8fkcs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_el7vk"]
-size = Vector2(16, 216)
+size = Vector2(8, 216)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_scjft"]
-size = Vector2(40, 216)
+size = Vector2(24, 216)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k18yy"]
 size = Vector2(40, 216)
@@ -32,28 +32,28 @@ color = Color(0.255659, 0.255659, 0.255659, 1)
 position = Vector2(368, 504)
 
 [node name="Shape" type="CollisionShape2D" parent="PerfectArea"]
-position = Vector2(8, 108)
+position = Vector2(4, 108)
 shape = SubResource("RectangleShape2D_el7vk")
 
 [node name="Color" type="ColorRect" parent="PerfectArea"]
-offset_right = 16.0
+offset_right = 8.0
 offset_bottom = 216.0
 color = Color(1, 1, 0, 1)
 
 [node name="GreatAreaBack" type="Area2D" parent="."]
-position = Vector2(328, 504)
+position = Vector2(344, 504)
 
 [node name="Shape" type="CollisionShape2D" parent="GreatAreaBack"]
-position = Vector2(20, 108)
+position = Vector2(12, 108)
 shape = SubResource("RectangleShape2D_scjft")
 
 [node name="ColorRect" type="ColorRect" parent="GreatAreaBack"]
-offset_right = 40.0
+offset_right = 24.0
 offset_bottom = 216.0
 color = Color(0.891544, 0.419283, 0.201671, 1)
 
 [node name="GreatAreaFront" type="Area2D" parent="."]
-position = Vector2(384, 504)
+position = Vector2(376, 504)
 
 [node name="Shape" type="CollisionShape2D" parent="GreatAreaFront"]
 position = Vector2(20, 108)

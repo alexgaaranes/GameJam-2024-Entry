@@ -1,3 +1,18 @@
-[gd_scene format=3 uid="uid://b8ubotbc18a7t"]
+[gd_scene load_steps=4 format=3 uid="uid://b8ubotbc18a7t"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_k6gio"]
+[ext_resource type="Script" path="res://scripts/input_manager.gd" id="2_kxd6n"]
+[ext_resource type="Script" path="res://scripts/cue_spawn_manager.gd" id="3_mgrha"]
 
 [node name="GameManager" type="Node"]
+script = ExtResource("1_k6gio")
+
+[node name="InputManager" type="Node" parent="."]
+script = ExtResource("2_kxd6n")
+
+[node name="CueSpawnManager" type="Node" parent="."]
+script = ExtResource("3_mgrha")
+
+[node name="CueSpawnTimer" type="Timer" parent="CueSpawnManager"]
+
+[connection signal="timeout" from="CueSpawnManager/CueSpawnTimer" to="CueSpawnManager" method="_on_cue_spawn_timer_timeout"]

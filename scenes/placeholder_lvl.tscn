@@ -1,11 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhmqw75h2u8fk"]
+[gd_scene load_steps=4 format=3 uid="uid://bhmqw75h2u8fk"]
 
+[ext_resource type="PackedScene" uid="uid://b8ubotbc18a7t" path="res://scenes/game_manager.tscn" id="1_63au2"]
 [ext_resource type="PackedScene" uid="uid://bgngv3qaf4or3" path="res://scenes/pedal_column.tscn" id="1_85v0j"]
 [ext_resource type="PackedScene" uid="uid://pt6s1ma0v7s8" path="res://scenes/pedal_cue.tscn" id="2_e51k7"]
 
 [node name="PlaceholderLvl" type="Node"]
 
+[node name="GameManager" parent="." instance=ExtResource("1_63au2")]
+
 [node name="PedalColumn" parent="." instance=ExtResource("1_85v0j")]
 
 [node name="PedalCue" parent="." instance=ExtResource("2_e51k7")]
 position = Vector2(1400, 624)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 416.0
+offset_top = 464.0
+offset_right = 534.75
+offset_bottom = 496.0
+text = "Last Cue:"

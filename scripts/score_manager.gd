@@ -50,6 +50,7 @@ func addGreat(amount: int):
 
 func addMissed(amount: int):
 	missedAmt += amount
+	resetCombo()
 	parent.updateHP(-3)
 	
 # temp funcs
@@ -61,3 +62,6 @@ func updateGreatLabel():
 	
 func updateMissedLabel():
 	missedLabel.text = "Missed: %d" % [missedAmt]
+
+func getCombo():
+	return comboAmt

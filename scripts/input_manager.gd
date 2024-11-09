@@ -37,7 +37,6 @@ func _process(delta):
 		else:
 			updateLabel("Missed")
 			await scoreManager.addMissed(1)
-			scoreManager.resetCombo()
 			isPenalized = true
 			timer.start()
 		

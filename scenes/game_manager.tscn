@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8ubotbc18a7t"]
+[gd_scene load_steps=6 format=3 uid="uid://b8ubotbc18a7t"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_k6gio"]
 [ext_resource type="Script" path="res://scripts/input_manager.gd" id="2_kxd6n"]
 [ext_resource type="Script" path="res://scripts/cue_spawn_manager.gd" id="3_mgrha"]
 [ext_resource type="Script" path="res://scripts/score_manager.gd" id="4_2puip"]
+[ext_resource type="Script" path="res://scripts/distance_manager.gd" id="5_ub1gr"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_k6gio")
@@ -12,7 +13,6 @@ script = ExtResource("1_k6gio")
 script = ExtResource("2_kxd6n")
 
 [node name="PenaltyTimer" type="Timer" parent="InputManager"]
-wait_time = 0.8
 
 [node name="CueSpawnManager" type="Node" parent="."]
 script = ExtResource("3_mgrha")
@@ -22,5 +22,11 @@ script = ExtResource("3_mgrha")
 [node name="ScoreManager" type="Node" parent="."]
 script = ExtResource("4_2puip")
 
+[node name="DistanceManager" type="Node" parent="."]
+script = ExtResource("5_ub1gr")
+
+[node name="SlowdownTimer" type="Timer" parent="DistanceManager"]
+
 [connection signal="timeout" from="InputManager/PenaltyTimer" to="InputManager" method="_on_penalty_timer_timeout"]
 [connection signal="timeout" from="CueSpawnManager/CueSpawnTimer" to="CueSpawnManager" method="_on_cue_spawn_timer_timeout"]
+[connection signal="timeout" from="DistanceManager/SlowdownTimer" to="DistanceManager" method="_on_slowdown_timer_timeout"]

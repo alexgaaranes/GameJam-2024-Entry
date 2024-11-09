@@ -44,3 +44,10 @@ offset_top = 328.0
 offset_right = 64.0
 offset_bottom = 351.0
 text = "HP:"
+
+[node name="Distance" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 368.0
+offset_right = 100.0
+offset_bottom = 391.0
+text = "Distance: "

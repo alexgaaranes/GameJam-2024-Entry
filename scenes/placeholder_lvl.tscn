@@ -19,3 +19,21 @@ offset_top = 464.0
 offset_right = 534.75
 offset_bottom = 496.0
 text = "Last Cue:"
+
+[node name="Perfect" type="Label" parent="."]
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 87.0
+text = "Perfect: "
+
+[node name="Great" type="Label" parent="."]
+offset_top = 88.0
+offset_right = 52.0
+offset_bottom = 111.0
+text = "Great: "
+
+[node name="Missed" type="Label" parent="."]
+offset_top = 112.0
+offset_right = 63.0
+offset_bottom = 135.0
+text = "Missed: "

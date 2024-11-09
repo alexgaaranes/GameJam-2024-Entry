@@ -1,13 +1,20 @@
 extends Node
 
 var pedalColumn: Node2D
-var detected: Dictionary
 var label: Label
+var parent: Node
+var timer: Timer
+
+var isPenalized: bool
+var detected: Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pedalColumn = get_parent().get_parent().get_node("PedalColumn")
+	parent = get_parent()
+	pedalColumn = parent.get_parent().get_node("PedalColumn")
 	label = get_parent().get_parent().get_node("Label")
+	isPenalized = false
+	timer = get_node("PenaltyTimer")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,13 +24,26 @@ func _process(delta):
 		print(pedalColumn.detectedAreas)
 	
 	# Pedal Action
-	if Input.is_action_just_pressed("pedal"):
+	if Input.is_action_just_pressed("pedal") and not isPenalized:
 		detected = pedalColumn.detectedAreas
 		if not detected.is_empty():
 			if detected.has("P"):
-				label.text = "Last Cue: Perfect"
+				updateLabel("Perfect")
+				parent.perfectAmt += 1
 			else:
-				label.text = "Last Cue: Great"
+				updateLabel("Great")
+				parent.greatAmt += 1
 			detected.values()[0].queue_free()
 		else:
-			label.text = "Last Cue: Missed"
+			updateLabel("Missed")
+			parent.missedAmt += 1
+			isPenalized = true
+			timer.start()
+
+func _on_penalty_timer_timeout():
+	isPenalized = false
+
+
+# SUPPLEMENTARY FUNCTIONS
+func updateLabel(text: String):
+	label.text = "Last Cue: %s" % [text]

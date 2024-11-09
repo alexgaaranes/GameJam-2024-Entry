@@ -10,9 +10,13 @@ script = ExtResource("1_k6gio")
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("2_kxd6n")
 
+[node name="PenaltyTimer" type="Timer" parent="InputManager"]
+wait_time = 0.8
+
 [node name="CueSpawnManager" type="Node" parent="."]
 script = ExtResource("3_mgrha")
 
 [node name="CueSpawnTimer" type="Timer" parent="CueSpawnManager"]
 
+[connection signal="timeout" from="InputManager/PenaltyTimer" to="InputManager" method="_on_penalty_timer_timeout"]
 [connection signal="timeout" from="CueSpawnManager/CueSpawnTimer" to="CueSpawnManager" method="_on_cue_spawn_timer_timeout"]

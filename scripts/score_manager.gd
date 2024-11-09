@@ -1,6 +1,7 @@
 extends Node
 
-var multiplier: float = 1
+var multiplier: float = 0
+var target: float = 250.0
 
 # Label object references
 var comboLabel: Label
@@ -29,6 +30,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	updateComboLabel()
+	updateMultiplier()
 
 # Setters & Getters
 func updateCombo():
@@ -63,4 +65,9 @@ func getCombo():
 	return comboAmt
 
 func updateMultiplier():
-	multiplier = floor(multiplier + distanceManager.getDistance()/500) 
+	if distanceManager.getDistance() > target:
+		multiplier += 1
+		target += 250
+
+func getMultiplier():
+	return multiplier

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d32edhrwwf0fs"
-path="res://.godot/imported/road-grass.png-6f740c3e44306d80e4287d5eebd91424.ctex"
+path="res://.godot/imported/road-grass.png-bfd57577af9bb5715e130c803d1004f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assests/art/terrain/road-grass.png"
-dest_files=["res://.godot/imported/road-grass.png-6f740c3e44306d80e4287d5eebd91424.ctex"]
+source_file="res://assets/art/terrain/road-grass.png"
+dest_files=["res://.godot/imported/road-grass.png-bfd57577af9bb5715e130c803d1004f4.ctex"]
 
 [params]
 

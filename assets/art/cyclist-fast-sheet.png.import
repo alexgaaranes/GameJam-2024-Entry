@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnriwffii3plk"
-path="res://.godot/imported/cyclist-fast-sheet.png-cd8fbd1db523430b78ccaf525a4abfa9.ctex"
+path="res://.godot/imported/cyclist-fast-sheet.png-d41fa90f698df7af9f29bd079361af69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assests/art/cyclist-fast-sheet.png"
-dest_files=["res://.godot/imported/cyclist-fast-sheet.png-cd8fbd1db523430b78ccaf525a4abfa9.ctex"]
+source_file="res://assets/art/cyclist-fast-sheet.png"
+dest_files=["res://.godot/imported/cyclist-fast-sheet.png-d41fa90f698df7af9f29bd079361af69.ctex"]
 
 [params]
 

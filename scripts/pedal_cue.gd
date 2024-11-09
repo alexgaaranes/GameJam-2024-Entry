@@ -1,7 +1,7 @@
 class_name PedalCue
 extends Node2D
 
-var velocity = -800 # left
+var velocity = -600 # left
 
 # Node references
 var root: Node
@@ -19,3 +19,6 @@ func _process(delta):
 
 func free():	# can add more here 
 	queue_free()
+
+func setVelocity(velo: float):
+	velocity = velo

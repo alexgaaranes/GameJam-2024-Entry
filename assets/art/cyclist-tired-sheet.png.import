@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cp1mgeeej4qqj"
-path="res://.godot/imported/cyclist-tired-sheet.png-763d59615b26e23bc009b42e74cc1e4d.ctex"
+path="res://.godot/imported/cyclist-tired-sheet.png-89f05780c8a58bf0e807248e6f8d6184.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assests/art/cyclist-tired-sheet.png"
-dest_files=["res://.godot/imported/cyclist-tired-sheet.png-763d59615b26e23bc009b42e74cc1e4d.ctex"]
+source_file="res://assets/art/cyclist-tired-sheet.png"
+dest_files=["res://.godot/imported/cyclist-tired-sheet.png-89f05780c8a58bf0e807248e6f8d6184.ctex"]
 
 [params]
 

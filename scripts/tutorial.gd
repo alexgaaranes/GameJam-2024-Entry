@@ -19,6 +19,5 @@ func _process(delta):
 	pass
 
 
-
-func _on_fade_out_timer_timeout():
-	pass
+func _on_fade_out_timer_timeout():			# you can put something here
+	pass # Replace with function body.

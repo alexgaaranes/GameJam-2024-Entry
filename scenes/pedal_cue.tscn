@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://pt6s1ma0v7s8"]
+
+[ext_resource type="Script" path="res://scripts/pedal_cue.gd" id="1_5sf68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l7uh"]
+size = Vector2(64, 64)
+
+[node name="PedalCue" type="Node2D"]
+script = ExtResource("1_5sf68")
+
+[node name="AreaPedalCue" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="AreaPedalCue"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_2l7uh")
+
+[node name="Color" type="ColorRect" parent="AreaPedalCue"]
+offset_left = -32.0
+offset_top = -40.0
+offset_right = 32.0
+offset_bottom = 24.0
+color = Color(4.42803e-06, 0.959905, 0.852624, 1)

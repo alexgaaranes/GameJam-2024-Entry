@@ -25,6 +25,7 @@ offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

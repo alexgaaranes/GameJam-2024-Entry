@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgngv3qaf4or3"]
+[gd_scene load_steps=14 format=3 uid="uid://bgngv3qaf4or3"]
 
 [ext_resource type="Script" path="res://scripts/pedal_column.gd" id="1_8fkcs"]
+[ext_resource type="Texture2D" uid="uid://bxg1wxbhswkdr" path="res://assests/art/beat-column-sheet.png" id="2_n8det"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_el7vk"]
 size = Vector2(8, 216)
@@ -13,6 +14,82 @@ size = Vector2(40, 216)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4ohc"]
 size = Vector2(122, 226)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l01e2"]
+atlas = ExtResource("2_n8det")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syve0"]
+atlas = ExtResource("2_n8det")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aiywc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l01e2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syve0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_j0qoi"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_l8ld5"]
+resource_name = "idle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_k0pok"]
+resource_name = "click"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jk7g3"]
+_data = {
+"RESET": SubResource("Animation_j0qoi"),
+"idle": SubResource("Animation_l8ld5"),
+"tap": SubResource("Animation_k0pok")
+}
 
 [node name="PedalColumn" type="Node2D"]
 script = ExtResource("1_8fkcs")
@@ -41,7 +118,7 @@ shape = SubResource("RectangleShape2D_el7vk")
 [node name="Color" type="ColorRect" parent="PerfectArea"]
 offset_right = 8.0
 offset_bottom = 216.0
-color = Color(1, 1, 0, 1)
+color = Color(0.431373, 0.721569, 0.658824, 1)
 
 [node name="GreatAreaBack" type="Area2D" parent="."]
 position = Vector2(344, 504)
@@ -53,7 +130,7 @@ shape = SubResource("RectangleShape2D_scjft")
 [node name="ColorRect" type="ColorRect" parent="GreatAreaBack"]
 offset_right = 24.0
 offset_bottom = 216.0
-color = Color(0.891544, 0.419283, 0.201671, 1)
+color = Color(0.196078, 0.392157, 0.427451, 0.784314)
 
 [node name="GreatAreaFront" type="Area2D" parent="."]
 position = Vector2(376, 504)
@@ -65,7 +142,7 @@ shape = SubResource("RectangleShape2D_k18yy")
 [node name="ColorRect" type="ColorRect" parent="GreatAreaFront"]
 offset_right = 40.0
 offset_bottom = 216.0
-color = Color(0.891544, 0.419283, 0.201671, 1)
+color = Color(0.207843, 0.392157, 0.423529, 0.784314)
 
 [node name="EndArea" type="Area2D" parent="."]
 position = Vector2(-200, 504)
@@ -73,6 +150,17 @@ position = Vector2(-200, 504)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea"]
 position = Vector2(51, 103)
 shape = SubResource("RectangleShape2D_a4ohc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(372, 625)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_aiywc")
+animation = &"idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jk7g3")
+}
 
 [connection signal="area_entered" from="PerfectArea" to="." method="_on_perfect_area_area_entered"]
 [connection signal="area_exited" from="PerfectArea" to="." method="_on_perfect_area_area_exited"]

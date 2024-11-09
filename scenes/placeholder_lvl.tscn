@@ -11,7 +11,7 @@
 [node name="PedalColumn" parent="." instance=ExtResource("1_85v0j")]
 
 [node name="PedalCue" parent="." instance=ExtResource("2_e51k7")]
-position = Vector2(1400, 624)
+position = Vector2(1400, 625)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 416.0

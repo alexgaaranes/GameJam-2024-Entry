@@ -8,10 +8,12 @@ var timer: Timer
 var isPenalized: bool
 var detected: Dictionary
 var passedCues: Array
+var scoreManager: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	parent = get_parent()
+	scoreManager = parent.get_node("ScoreManager")
 	pedalColumn = parent.get_parent().get_node("PedalColumn")
 	label = get_parent().get_parent().get_node("Label")
 	isPenalized = false
@@ -20,26 +22,22 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# Detection debugging print
-	#if not pedalColumn.detectedAreas.is_empty():
-		#print(pedalColumn.detectedAreas)
-	
 	# Pedal Action
 	if Input.is_action_just_pressed("pedal") and not isPenalized:
 		detected = pedalColumn.detectedAreas
 		if not detected.is_empty():
 			if detected.has("P"):
 				updateLabel("Perfect")
-				await parent.addPerfect(1)
+				await scoreManager.addPerfect(1)
 			else:
 				updateLabel("Great")
-				await parent.addGreat(1)
-			parent.updateCombo()
+				await scoreManager.addGreat(1)
+			scoreManager.updateCombo()
 			detected.values()[0].queue_free()
 		else:
 			updateLabel("Missed")
-			await parent.addMissed(1)
-			parent.resetCombo()
+			await scoreManager.addMissed(1)
+			scoreManager.resetCombo()
 			isPenalized = true
 			timer.start()
 		
@@ -52,12 +50,11 @@ func _on_penalty_timer_timeout():
 # function for clearing cues that passed
 func clearPassed():
 	passedCues = pedalColumn.passedCues
-	print(passedCues)
 	if passedCues.is_empty(): return
 	for cue in passedCues:
 		passedCues.erase(cue)
 		if cue == null: continue
-		parent.addMissed(1)
+		scoreManager.addMissed(1)
 		cue.queue_free()
 
 # SUPPLEMENTARY FUNCTIONS

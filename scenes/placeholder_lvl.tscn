@@ -37,3 +37,10 @@ offset_top = 112.0
 offset_right = 63.0
 offset_bottom = 135.0
 text = "Missed: "
+
+[node name="HealthPoints" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 328.0
+offset_right = 64.0
+offset_bottom = 351.0
+text = "HP:"

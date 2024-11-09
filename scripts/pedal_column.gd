@@ -38,5 +38,4 @@ func _on_perfect_area_area_exited(area):
 
 # END POINT
 func _on_end_area_area_entered(area):
-	print(area)
 	passedCues.append(area)

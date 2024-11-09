@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://pt6s1ma0v7s8"]
+[gd_scene load_steps=6 format=3 uid="uid://pt6s1ma0v7s8"]
 
 [ext_resource type="Script" path="res://scripts/pedal_cue.gd" id="1_5sf68"]
+[ext_resource type="Texture2D" uid="uid://c876vlqth1sie" path="res://assests/art/beat-cue.png" id="2_ondyc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l7uh"]
 size = Vector2(64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqxod"]
+atlas = ExtResource("2_ondyc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3nk3y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqxod")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="PedalCue" type="Node2D"]
 script = ExtResource("1_5sf68")
@@ -13,10 +29,16 @@ script = ExtResource("1_5sf68")
 [node name="Shape" type="CollisionShape2D" parent="AreaPedalCue"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_2l7uh")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="Color" type="ColorRect" parent="AreaPedalCue"]
 offset_left = -32.0
 offset_top = -40.0
 offset_right = 32.0
 offset_bottom = 24.0
-color = Color(4.42803e-06, 0.959905, 0.852624, 1)
+color = Color(0, 0.960784, 0.85098, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_3nk3y")

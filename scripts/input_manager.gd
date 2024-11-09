@@ -1,6 +1,7 @@
 extends Node
 
 var pedalColumn: Node2D
+var pedalColumnAnim: AnimationPlayer
 var label: Label
 var parent: Node
 var timer: Timer
@@ -15,6 +16,7 @@ func _ready():
 	parent = get_parent()
 	scoreManager = parent.get_node("ScoreManager")
 	pedalColumn = parent.get_parent().get_node("PedalColumn")
+	pedalColumnAnim = pedalColumn.get_node("AnimationPlayer")
 	label = get_parent().get_parent().get_node("Label")
 	isPenalized = false
 	timer = get_node("PenaltyTimer")
@@ -22,8 +24,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if not pedalColumnAnim.is_playing():
+		pedalColumnAnim.play("idle")
 	# Pedal Action
 	if Input.is_action_just_pressed("pedal") and not isPenalized:
+		pedalColumnAnim.play("tap")
 		detected = pedalColumn.detectedAreas
 		if not detected.is_empty():
 			if detected.has("P"):

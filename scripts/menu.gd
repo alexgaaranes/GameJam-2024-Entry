@@ -12,7 +12,7 @@ func _ready():
 
 
 func _on_start_button_pressed():	# Start Button Signal
-	get_tree().change_scene_to_file("res://scenes/placeholder_lvl.tscn")
+	get_tree().change_scene_to_file("res://scenes/main_level.tscn")
 	
 
 

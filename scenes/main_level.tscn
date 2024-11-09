@@ -1,0 +1,215 @@
+[gd_scene load_steps=12 format=3 uid="uid://bhmqw75h2u8fk"]
+
+[ext_resource type="PackedScene" uid="uid://b8ubotbc18a7t" path="res://scenes/game_manager.tscn" id="1_i7q76"]
+[ext_resource type="Script" path="res://scripts/main_level.gd" id="1_ne8dj"]
+[ext_resource type="PackedScene" uid="uid://bgngv3qaf4or3" path="res://scenes/pedal_column.tscn" id="2_pe4of"]
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="5_dah53"]
+[ext_resource type="FontFile" uid="uid://cduo3hndy60wv" path="res://fonts/arcade_classic.TTF" id="5_gmnf5"]
+
+[sub_resource type="Animation" id="Animation_fmcq5"]
+resource_name = "fade_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Combo:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.898039, 0.898039, 0.898039, 0), Color(0.898039, 0.898039, 0.898039, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ijmvr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Combo:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.898039, 0.898039, 0.898039, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_flekw"]
+_data = {
+"RESET": SubResource("Animation_ijmvr"),
+"fade_in": SubResource("Animation_fmcq5")
+}
+
+[sub_resource type="Animation" id="Animation_qb6a8"]
+resource_name = "fade_to_normal"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Label:theme_override_colors/default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.899258, 0.899258, 0.899258, 1), Color(0.898039, 0.898039, 0.898039, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k0c05"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Label:theme_override_colors/default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.899258, 0.899258, 0.899258, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmthr"]
+_data = {
+"RESET": SubResource("Animation_k0c05"),
+"fade_to_normal": SubResource("Animation_qb6a8")
+}
+
+[node name="MainLevel" type="Node"]
+script = ExtResource("1_ne8dj")
+
+[node name="GameManager" parent="." instance=ExtResource("1_i7q76")]
+
+[node name="PedalColumn" parent="." instance=ExtResource("2_pe4of")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 280.0
+offset_top = 456.0
+offset_right = 479.0
+offset_bottom = 507.0
+theme_override_fonts/font = ExtResource("5_gmnf5")
+theme_override_font_sizes/font_size = 50
+text = "Last Cue"
+horizontal_alignment = 1
+
+[node name="Combo" type="Label" parent="."]
+offset_left = 1072.0
+offset_top = 464.0
+offset_right = 1243.0
+offset_bottom = 515.0
+theme_override_colors/font_color = Color(0.898039, 0.898039, 0.898039, 0)
+theme_override_fonts/font = ExtResource("5_gmnf5")
+theme_override_font_sizes/font_size = 35
+text = "Combo x"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Combo"]
+root_node = NodePath("../../Tutorial/AnimationPlayer")
+libraries = {
+"": SubResource("AnimationLibrary_flekw")
+}
+
+[node name="HealthPoints" type="Label" parent="."]
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("5_gmnf5")
+theme_override_font_sizes/font_size = 30
+text = "STAMINA: "
+
+[node name="Background" type="ColorRect" parent="HealthPoints"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 8.0
+offset_right = 188.0
+offset_bottom = 40.0
+scale = Vector2(9, 1)
+color = Color(0.151645, 0, 0.000560862, 1)
+
+[node name="Value" type="ColorRect" parent="HealthPoints"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 8.0
+offset_right = 184.0
+offset_bottom = 48.0
+scale = Vector2(10.149, 0.796249)
+color = Color(0.93569, 0.454354, 1.15514e-06, 1)
+
+[node name="Distance" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 151.0
+offset_bottom = 81.0
+theme_override_fonts/font = ExtResource("5_gmnf5")
+theme_override_font_sizes/font_size = 30
+text = "Distance: "
+
+[node name="Tutorial" type="Node" parent="."]
+script = ExtResource("5_dah53")
+
+[node name="BlackFade" type="ColorRect" parent="Tutorial"]
+visible = false
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 1296.0
+offset_bottom = 736.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial"]
+root_node = NodePath("../BlackFade")
+libraries = {
+"": SubResource("AnimationLibrary_fmthr")
+}
+
+[node name="Label" type="RichTextLabel" parent="Tutorial"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -472.0
+offset_top = -24.0
+offset_right = 472.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0.899258, 0.899258, 0.899258, 1)
+theme_override_fonts/normal_font = ExtResource("5_gmnf5")
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "Press	Spacebar	on 	Time	to		Pickup		Pace"
+
+[node name="FadeOutTimer" type="Timer" parent="Tutorial"]
+wait_time = 3.0
+
+[connection signal="timeout" from="Tutorial/FadeOutTimer" to="Tutorial" method="_on_fade_out_timer_timeout"]

@@ -38,7 +38,7 @@ func _process(delta):
 				updateLabel("Great")
 				await scoreManager.addGreat(1)
 			scoreManager.updateCombo()
-			detected.values()[0].queue_free()
+			detected.values()[0].free()
 		else:
 			updateLabel("Missed")
 			await scoreManager.addMissed(1)
@@ -59,8 +59,8 @@ func clearPassed():
 		passedCues.erase(cue)
 		if cue == null: continue
 		scoreManager.addMissed(1)
-		cue.queue_free()
+		cue.free()
 
 # SUPPLEMENTARY FUNCTIONS
 func updateLabel(text: String):
-	label.text = "Last Cue: %s" % [text]
+	label.text = "%s" % [text]

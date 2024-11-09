@@ -1,11 +1,9 @@
 extends Node
 
-var multiplier: float = 0
+var multiplier: float = 1
 
 # Label object references
-var perfectLabel: Label
-var greatLabel: Label
-var missedLabel: Label
+var comboLabel: Label
 
 # Score Component
 var perfectAmt: int = 0
@@ -16,21 +14,21 @@ var comboAmt: int = 0
 var root: Node
 var parent: Node
 var cueSpawnManager: Node
+var comboAnim: AnimationPlayer
+var distanceManager: Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	parent = get_parent()
+	distanceManager = parent.get_node("DistanceManager")
 	root = parent.get_parent()
 	cueSpawnManager = parent.get_node("CueSpawnManager")
-	perfectLabel = root.get_node("Perfect")
-	greatLabel = root.get_node("Great")
-	missedLabel = root.get_node("Missed")
-
+	comboLabel = root.get_node("Combo")
+	comboAnim = comboLabel.get_node("AnimationPlayer")
+	comboLabel.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	updatePerfectLabel()
-	updateGreatLabel()
-	updateMissedLabel()
+	updateComboLabel()
 
 # Setters & Getters
 func updateCombo():
@@ -52,16 +50,17 @@ func addMissed(amount: int):
 	missedAmt += amount
 	resetCombo()
 	parent.updateHP(-3)
-	
-# temp funcs
-func updatePerfectLabel():
-	perfectLabel.text = "Perfect: %d" % [perfectAmt]
-	
-func updateGreatLabel():
-	greatLabel.text = "Great: %d" % [greatAmt]
-	
-func updateMissedLabel():
-	missedLabel.text = "Missed: %d" % [missedAmt]
+
+func updateComboLabel():
+	if comboAmt > 4:
+		if comboLabel.visible == false: comboAnim.play("fade_in")
+		comboLabel.visible = true
+		comboLabel.text = "Combo x%d" % [comboAmt]
+	else:
+		comboLabel.visible = false
 
 func getCombo():
 	return comboAmt
+
+func updateMultiplier():
+	multiplier = floor(multiplier + distanceManager.getDistance()/500) 

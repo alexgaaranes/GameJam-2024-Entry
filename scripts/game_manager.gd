@@ -1,25 +1,27 @@
 extends Node
 
 # Stats
-var HP: float = 30
+const maxHP = 30
+var HP: float = maxHP
 
 # Other node references
 var parent: Node
 var healthLabel: Label
+var healthBar: ColorRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	parent = get_parent()
 	healthLabel = parent.get_node("HealthPoints")
+	healthBar = healthLabel.get_node("Value")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	updateHealthLabel()
+	pass
 
 
 func updateHP(amount:float):
-	if HP >= 50 and amount > 0: return
+	if HP >= maxHP and amount > 0: return
 	HP += amount
-
-func updateHealthLabel():
-	healthLabel.text = "HP: %d" % [HP]
+	if HP < 0: HP = 0
+	healthBar.scale = Vector2((HP/30)*10.1,0.796249)

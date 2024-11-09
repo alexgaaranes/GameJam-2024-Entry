@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bgngv3qaf4or3"]
 
 [ext_resource type="Script" path="res://scripts/pedal_column.gd" id="1_8fkcs"]
-[ext_resource type="Texture2D" uid="uid://bxg1wxbhswkdr" path="res://assests/art/beat-column-sheet.png" id="2_n8det"]
+[ext_resource type="Texture2D" uid="uid://bxg1wxbhswkdr" path="res://assets/art/beat-column-sheet.png" id="2_n8det"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_el7vk"]
 size = Vector2(8, 216)

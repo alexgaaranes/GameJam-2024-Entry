@@ -16,15 +16,15 @@ func _process(delta):
 # ENTER
 func _on_great_area_back_area_entered(area):
 	if area.get_name() != "AreaPedalCue": return
-	detectedAreas["GB"] = area
+	detectedAreas["GB"] = area.get_parent()
 
 func _on_great_area_front_area_entered(area):
 	if area.get_name() != "AreaPedalCue": return
-	detectedAreas["GF"] = area
+	detectedAreas["GF"] = area.get_parent()
 
 func _on_perfect_area_area_entered(area):
 	if area.get_name() != "AreaPedalCue": return
-	detectedAreas["P"] = area
+	detectedAreas["P"] = area.get_parent()
 
 # EXIT
 func _on_great_area_back_area_exited(area):
@@ -38,4 +38,4 @@ func _on_perfect_area_area_exited(area):
 
 # END POINT
 func _on_end_area_area_entered(area):
-	passedCues.append(area)
+	passedCues.append(area.get_parent())

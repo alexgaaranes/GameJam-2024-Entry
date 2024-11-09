@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://pt6s1ma0v7s8"]
 
 [ext_resource type="Script" path="res://scripts/pedal_cue.gd" id="1_5sf68"]
-[ext_resource type="Texture2D" uid="uid://c876vlqth1sie" path="res://assests/art/beat-cue.png" id="2_ondyc"]
+[ext_resource type="Texture2D" uid="uid://c876vlqth1sie" path="res://assets/art/beat-cue.png" id="2_ondyc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l7uh"]
-size = Vector2(64, 64)
+size = Vector2(32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pqxod"]
 atlas = ExtResource("2_ondyc")

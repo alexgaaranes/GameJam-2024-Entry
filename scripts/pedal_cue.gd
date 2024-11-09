@@ -16,4 +16,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position += Vector2(velocity,0) * delta
-	
+
+func free():	# can add more here 
+	queue_free()

@@ -41,9 +41,16 @@ func updateDistance(delta):
 		isSlowing = true
 	else:
 		maxCombo = scoreManager.getCombo()
+		if maxCombo == 1:
+			distance += 2*delta
+			return
 		distance += maxCombo*delta
 
 
 func _on_slowdown_timer_timeout():
 	isSlowing = false
 	maxCombo = 0
+	
+
+func getDistance():
+	return distance

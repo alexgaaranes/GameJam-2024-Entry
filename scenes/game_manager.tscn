@@ -27,6 +27,8 @@ script = ExtResource("5_ub1gr")
 
 [node name="SlowdownTimer" type="Timer" parent="DistanceManager"]
 
+[node name="GameOverManager" type="Node" parent="."]
+
 [connection signal="timeout" from="InputManager/PenaltyTimer" to="InputManager" method="_on_penalty_timer_timeout"]
 [connection signal="timeout" from="CueSpawnManager/CueSpawnTimer" to="CueSpawnManager" method="_on_cue_spawn_timer_timeout"]
 [connection signal="timeout" from="DistanceManager/SlowdownTimer" to="DistanceManager" method="_on_slowdown_timer_timeout"]

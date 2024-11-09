@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bxg1wxbhswkdr"
-path="res://.godot/imported/beat-column-sheet.png-0b70527c6f779a51e2783be5b9268eef.ctex"
+path="res://.godot/imported/beat-column-sheet.png-69562d3e53e2534ad358af13cc2f4cb8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assests/art/beat-column-sheet.png"
-dest_files=["res://.godot/imported/beat-column-sheet.png-0b70527c6f779a51e2783be5b9268eef.ctex"]
+source_file="res://assets/art/beat-column-sheet.png"
+dest_files=["res://.godot/imported/beat-column-sheet.png-69562d3e53e2534ad358af13cc2f4cb8.ctex"]
 
 [params]
 

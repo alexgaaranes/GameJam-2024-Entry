@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c876vlqth1sie"
-path="res://.godot/imported/beat-cue.png-16a7305597514544503a1e16cd4aa971.ctex"
+path="res://.godot/imported/beat-cue.png-a8a8ea2e8dbdedc21532c16d4ae14e8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assests/art/beat-cue.png"
-dest_files=["res://.godot/imported/beat-cue.png-16a7305597514544503a1e16cd4aa971.ctex"]
+source_file="res://assets/art/beat-cue.png"
+dest_files=["res://.godot/imported/beat-cue.png-a8a8ea2e8dbdedc21532c16d4ae14e8e.ctex"]
 
 [params]
 

@@ -15,8 +15,9 @@ func _ready():
 	parent = get_parent()
 	timer = get_node("CueSpawnTimer")
 	cueScene = preload("res://scenes/pedal_cue.tscn")
-	timer.wait_time = defaultTime
+	timer.wait_time = 4
 	timer.start()
+	timer.wait_time = defaultTime
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

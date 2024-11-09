@@ -1,6 +1,7 @@
 extends Node2D
 
 var detectedAreas: Dictionary # Append areas entered here
+var passedCues: Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,3 +35,8 @@ func _on_great_area_front_area_exited(area):
 
 func _on_perfect_area_area_exited(area):
 	detectedAreas.erase("P")
+
+# END POINT
+func _on_end_area_area_entered(area):
+	print(area)
+	passedCues.append(area)

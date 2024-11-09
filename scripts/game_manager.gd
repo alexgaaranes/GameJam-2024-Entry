@@ -1,7 +1,7 @@
 extends Node
 
 # Stats
-var HP: float = 50
+var HP: float = 30
 
 # Other node references
 var parent: Node

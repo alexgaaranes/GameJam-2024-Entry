@@ -46,7 +46,7 @@ func _process(delta):
 	if not pedalColumnAnim.is_playing():
 		pedalColumnAnim.play("idle")
 	# Pedal Action
-	if Input.is_action_just_pressed("pedal") and not isPenalized:
+	if (Input.is_action_just_pressed("pedal") or Input.is_action_just_pressed("tap")) and not isPenalized:
 		if not bgmIsPlayed:
 			Global.bgm_player.stop()
 			parent.get_node("BGM").play()

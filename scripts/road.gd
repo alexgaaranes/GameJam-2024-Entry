@@ -13,12 +13,9 @@ func _process(delta):
 
 func updateRoad(val: float):
 	val *= 100
-	if $RoadTiles1.position.x - val <= -1400:
-		$RoadTiles1.position.x = 1400
-	if $RoadTiles2.position.x - val<= -1400:
-		$RoadTiles2.position.x = 1400
-	$RoadTiles1.position.x -= val
-	$RoadTiles2.position.x -= val
+	if self.position.x <= -1400:
+		self.position.x = 0
+	self.position.x -= val
 	# REPEATING ILLUSION
 	
 	

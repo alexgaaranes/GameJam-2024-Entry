@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhmqw75h2u8fk"]
+[gd_scene load_steps=19 format=3 uid="uid://bhmqw75h2u8fk"]
 
 [ext_resource type="PackedScene" uid="uid://b8ubotbc18a7t" path="res://scenes/game_manager.tscn" id="1_i7q76"]
 [ext_resource type="Script" path="res://scripts/main_level.gd" id="1_ne8dj"]
@@ -10,6 +10,52 @@
 [ext_resource type="PackedScene" uid="uid://dki4yf33hce12" path="res://scenes/cyclist.tscn" id="4_app16"]
 [ext_resource type="Script" path="res://scripts/tutorial.gd" id="5_dah53"]
 [ext_resource type="FontFile" uid="uid://cduo3hndy60wv" path="res://fonts/arcade_classic.TTF" id="5_gmnf5"]
+
+[sub_resource type="GDScript" id="GDScript_0s01k"]
+script/source = "extends Control
+
+var nextTile: Control
+var parent: Control
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	parent = self.get_parent()
+	nextTile = parent.get_node(\"RoadTiles1\").duplicate()
+	nextTile.position.x = 1400
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if position.x <= -1400:
+		parent.add_child(nextTile)
+		self.queue_free()
+
+func updatePos(val):
+	position.x -= val
+"
+
+[sub_resource type="GDScript" id="GDScript_kbdr2"]
+script/source = "extends Control
+
+var nextTile: Control
+var parent: Control
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	parent = self.get_parent()
+	nextTile = parent.get_node(\"RoadTiles1\").duplicate()
+	nextTile.position.x = 1400
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if position.x <= -1400:
+		parent.add_child(nextTile)
+		self.queue_free()
+
+func updatePos(val):
+	position.x -= val
+"
 
 [sub_resource type="Animation" id="Animation_ijmvr"]
 length = 0.001
@@ -116,12 +162,12 @@ script = ExtResource("1_ne8dj")
 position = Vector2(640, 360)
 script = ExtResource("2_becuv")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="BG" type="ColorRect" parent="."]
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 1296.0
 offset_bottom = 736.0
-color = Color(0, 0.694679, 0.74945, 1)
+color = Color(0.840068, 0.404678, 0, 1)
 
 [node name="Road" type="Control" parent="."]
 layout_mode = 3
@@ -136,6 +182,7 @@ anchors_preset = 0
 offset_top = 296.0
 offset_right = 40.0
 offset_bottom = 336.0
+script = SubResource("GDScript_0s01k")
 
 [node name="Pair1" type="Control" parent="Road/RoadTiles1"]
 anchors_preset = 0
@@ -310,6 +357,7 @@ offset_left = 1400.0
 offset_top = 296.0
 offset_right = 1440.0
 offset_bottom = 336.0
+script = SubResource("GDScript_kbdr2")
 
 [node name="Pair1" type="Control" parent="Road/RoadTiles2"]
 anchors_preset = 0
@@ -527,7 +575,7 @@ offset_top = 8.0
 offset_right = 188.0
 offset_bottom = 40.0
 scale = Vector2(9, 1)
-color = Color(0.151645, 0, 0.000560862, 1)
+color = Color(0.692197, 0, 0.0122548, 1)
 
 [node name="Value" type="ColorRect" parent="HealthPoints"]
 layout_mode = 0
@@ -536,7 +584,7 @@ offset_top = 8.0
 offset_right = 184.0
 offset_bottom = 48.0
 scale = Vector2(10.149, 0.796249)
-color = Color(0.93569, 0.454354, 1.15514e-06, 1)
+color = Color(0, 0.462745, 0, 1)
 
 [node name="Distance" type="Label" parent="."]
 offset_left = 8.0

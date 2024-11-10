@@ -31,7 +31,7 @@ func updateLabels():
 	$TotalDistance.text = "Total Distance:\t%.2fm" % [totalDist]
 	$PerfectLabel.text = "Perfect x%d" % [statArr[0]]
 	$GreatLabel.text = "Great x%d" % [statArr[1]]
-	$MissedLabel.text = "Missed x%d" % [statArr[2]]
+	$MissedLabel.text = "Miss x%d" % [statArr[2]]
 	$MaxComboLabel.text = "Max Combo x%d" % [statArr[3]]
 
 

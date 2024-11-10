@@ -49,7 +49,7 @@ func _process(delta):
 			scoreManager.updateCombo()
 			detected.values()[0].free()
 		else:
-			updateLabel("Missed")
+			updateLabel("Miss")
 			await scoreManager.addMissed(1)
 			isPenalized = true
 			damageColor.visible = true

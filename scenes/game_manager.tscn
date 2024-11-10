@@ -13,7 +13,7 @@ script = ExtResource("1_k6gio")
 script = ExtResource("2_kxd6n")
 
 [node name="PenaltyTimer" type="Timer" parent="InputManager"]
-wait_time = 0.75
+wait_time = 0.25
 
 [node name="CueSpawnManager" type="Node" parent="."]
 script = ExtResource("3_mgrha")

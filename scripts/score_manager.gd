@@ -2,6 +2,7 @@ extends Node
 
 var multiplier: float = 0
 var target: float = 250.0
+var damaged: bool
 
 # Label object references
 var comboLabel: Label
@@ -12,6 +13,8 @@ var greatAmt: int = 0
 var missedAmt: int = 0
 var comboAmt: int = 0
 
+var camera: Camera2D
+var defaultCamPos: Vector2
 var root: Node
 var parent: Node
 var cueSpawnManager: Node
@@ -22,6 +25,8 @@ func _ready():
 	parent = get_parent()
 	distanceManager = parent.get_node("DistanceManager")
 	root = parent.get_parent()
+	camera = root.get_node("Camera")
+	defaultCamPos = camera.position
 	cueSpawnManager = parent.get_node("CueSpawnManager")
 	comboLabel = root.get_node("Combo")
 	comboAnim = comboLabel.get_node("AnimationPlayer")
@@ -31,6 +36,9 @@ func _ready():
 func _process(delta):
 	updateComboLabel()
 	updateMultiplier()
+	if damaged:
+		camera.apply_shake(delta)
+		damaged = false
 
 # Setters & Getters
 func updateCombo():
@@ -49,6 +57,7 @@ func addGreat(amount: int):
 	greatAmt += amount
 
 func addMissed(amount: int):
+	damaged = true
 	missedAmt += amount
 	resetCombo()
 	parent.updateHP(-3)

@@ -1,6 +1,7 @@
 extends Node
 
 var timer: Timer
+var menuTimer: Timer
 var animPlayer: AnimationPlayer
 var parent: Node
 
@@ -11,6 +12,7 @@ var totalDist: float
 func _ready():
 	parent = get_parent()
 	timer = $Timer
+	menuTimer = $MenuTimer
 	animPlayer = $AnimationPlayer
 	animPlayer.play("fade_in")
 	updateLabels()
@@ -34,13 +36,15 @@ func updateLabels():
 
 
 func _on_menu_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
-
-
+	animPlayer.play("fade_out")
+	menuTimer.start()
+	
 func _on_restart_button_pressed():
 	animPlayer.play("fade_out")
 	timer.start()
 	
-
 func _on_timer_timeout():
 	get_tree().reload_current_scene()
+
+func _on_menu_timer_timeout():
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")

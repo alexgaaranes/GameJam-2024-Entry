@@ -387,6 +387,9 @@ theme_override_font_sizes/font_size = 25
 text = "Max Combo x"
 vertical_alignment = 1
 
+[node name="MenuTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="timeout" from="MenuTimer" to="." method="_on_menu_timer_timeout"]

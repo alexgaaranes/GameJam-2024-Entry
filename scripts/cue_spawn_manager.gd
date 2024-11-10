@@ -35,7 +35,14 @@ func _on_cue_spawn_timer_timeout():
 	timer.start()
 
 func reduceTime(amount: float):
-	if timer.wait_time < minSpawnTime: return
+	#TODO: MID ANIMATION
+	#if timer.wait_time < minSpawnTime + 0.2:	# UNCOMMENT TO USE
+		# PUT MID SPEED ANIMATION HERE
+	
+	if timer.wait_time < minSpawnTime:
+		#TODO: HIGH SPEED ANIMATION
+		# PUT THE HIGHEST SPEED ANIMATION HERE
+		return
 	timer.wait_time -= timer.wait_time*amount
 	
 func resetTime():

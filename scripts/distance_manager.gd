@@ -34,6 +34,8 @@ func updateDistanceLabel():
 	
 func updateDistance(delta):
 	if isSlowing:
+		# TODO: Slowing Down Anim when missed
+		# PUT THE SLOWING DOWN ANIMATION HERE
 		distance += timer.time_left*maxCombo*delta
 		return
 	if scoreManager.getCombo() == 0 and not isSlowing:

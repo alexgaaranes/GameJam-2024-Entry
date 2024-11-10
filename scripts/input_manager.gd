@@ -12,11 +12,13 @@ var detected: Dictionary
 var passedCues: Array
 var scoreManager: Node
 var damageColor: ColorRect
+var gameOverManager: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	parent = get_parent()
 	root = parent.get_parent()
+	gameOverManager = parent.get_node("GameOverManager")
 	scoreManager = parent.get_node("ScoreManager")
 	pedalColumn = parent.get_parent().get_node("PedalColumn")
 	pedalColumnAnim = pedalColumn.get_node("AnimationPlayer")
@@ -29,6 +31,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if gameOverManager.getGameStatus():
+		return
 	if not pedalColumnAnim.is_playing():
 		pedalColumnAnim.play("idle")
 	# Pedal Action

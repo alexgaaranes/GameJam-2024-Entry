@@ -1,7 +1,7 @@
 extends Camera2D
 
-@export var randomStrength: float = 10.0
-@export var shakeFade: float = 10.0
+var randomStrength: float = 10.0
+var shakeFade: float = 10.0
 
 var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0

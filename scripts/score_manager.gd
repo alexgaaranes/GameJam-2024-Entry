@@ -12,6 +12,7 @@ var perfectAmt: int = 0
 var greatAmt: int = 0
 var missedAmt: int = 0
 var comboAmt: int = 0
+var maxCombo: int = 0
 
 var camera: Camera2D
 var defaultCamPos: Vector2
@@ -43,6 +44,7 @@ func _process(delta):
 # Setters & Getters
 func updateCombo():
 	comboAmt += 1
+	if comboAmt > maxCombo: maxCombo = comboAmt
 	cueSpawnManager.reduceTime(comboAmt/150.0)
 
 func resetCombo():
@@ -72,6 +74,13 @@ func updateComboLabel():
 
 func getCombo():
 	return comboAmt
+
+func getMaxCombo():
+	return maxCombo
+	
+func getStats():
+	var statArr: Array = [perfectAmt, greatAmt, missedAmt, maxCombo]
+	return statArr
 
 func updateMultiplier():
 	if distanceManager.getDistance() > target:

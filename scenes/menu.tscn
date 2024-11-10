@@ -19,9 +19,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -208.0
-offset_top = -464.0
-offset_right = 208.0
+offset_left = -192.0
+offset_top = -528.0
+offset_right = 192.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
@@ -31,12 +31,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_siky0")
 theme_override_font_sizes/font_size = 35
 text = "Start"
-
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_siky0")
-theme_override_font_sizes/font_size = 35
-text = "Options"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

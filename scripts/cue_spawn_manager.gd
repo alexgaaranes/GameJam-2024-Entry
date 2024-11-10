@@ -40,3 +40,7 @@ func reduceTime(amount: float):
 	
 func resetTime():
 	timer.wait_time = defaultTime
+
+func stopSpawn():
+	if timer.wait_time > 0:
+		timer.stop()

@@ -25,3 +25,6 @@ func updateHP(amount:float):
 	HP += amount
 	if HP < 0: HP = 0
 	healthBar.scale = Vector2((HP/30)*10.1,0.796249)
+
+func getHP():
+	return HP

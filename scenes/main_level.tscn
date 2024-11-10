@@ -182,7 +182,6 @@ text = "Distance: "
 script = ExtResource("5_dah53")
 
 [node name="BlackFade" type="ColorRect" parent="Tutorial"]
-visible = false
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 1296.0

@@ -8,16 +8,21 @@ var timer: Timer
 var root: Node
 
 var isPenalized: bool
+var hasMissed: bool = true
 var detected: Dictionary
 var passedCues: Array
 var scoreManager: Node
 var damageColor: ColorRect
 var gameOverManager: Node
+var cyclist: Area2D
+var cyclistAnim: AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	parent = get_parent()
 	root = parent.get_parent()
+	cyclist = root.get_node("Cyclist")
+	cyclistAnim = cyclist.get_node("AnimatedSprite2D")
 	gameOverManager = parent.get_node("GameOverManager")
 	scoreManager = parent.get_node("ScoreManager")
 	pedalColumn = parent.get_parent().get_node("PedalColumn")
@@ -40,6 +45,10 @@ func _process(delta):
 		pedalColumnAnim.play("tap")
 		detected = pedalColumn.detectedAreas
 		if not detected.is_empty():
+			if hasMissed:
+				hasMissed = false
+				cyclistAnim.stop()
+				cyclistAnim.play("moving")
 			if detected.has("P"):
 				updateLabel("Perfect")
 				await scoreManager.addPerfect(1)
@@ -49,9 +58,12 @@ func _process(delta):
 			scoreManager.updateCombo()
 			detected.values()[0].free()
 		else:
+			cyclistAnim.stop()
+			cyclistAnim.play("slowing")
 			updateLabel("Miss")
 			await scoreManager.addMissed(1)
 			isPenalized = true
+			hasMissed = true
 			damageColor.visible = true
 			timer.start()
 		
@@ -69,7 +81,7 @@ func clearPassed():
 	for cue in passedCues:
 		passedCues.erase(cue)
 		if cue == null: continue
-		updateLabel("Missed")
+		updateLabel("Miss")
 		await scoreManager.addMissed(1)
 		isPenalized = true
 		damageColor.visible = true

@@ -12,6 +12,7 @@ var parent: Node
 var root: Node
 var scoreManager: Node
 var timer: Timer
+var road: Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +20,7 @@ func _ready():
 	root = parent.get_parent()
 	distLabel = root.get_node("Distance")
 	scoreManager = parent.get_node("ScoreManager")
+	road = root.get_node("Road")
 	timer = $SlowdownTimer
 	distance = 0
 
@@ -34,8 +36,7 @@ func updateDistanceLabel():
 	
 func updateDistance(delta):
 	if isSlowing:
-		# TODO: Slowing Down Anim when missed
-		# PUT THE SLOWING DOWN ANIMATION HERE
+		road.updateRoad(timer.time_left*maxCombo*delta)
 		distance += timer.time_left*maxCombo*delta
 		return
 	if scoreManager.getCombo() == 0 and not isSlowing:
@@ -44,8 +45,10 @@ func updateDistance(delta):
 	else:
 		maxCombo = scoreManager.getCombo()
 		if maxCombo == 1:
+			road.updateRoad(2*delta)
 			distance += 2*delta
 			return
+		road.updateRoad(maxCombo*delta)
 		distance += maxCombo*delta
 
 

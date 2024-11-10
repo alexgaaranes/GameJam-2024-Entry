@@ -6,6 +6,8 @@ var cueScene: PackedScene
 var cueNode: Node
 var parent: Node
 var scoreManager: Node
+var cyclistAnim: AnimatedSprite2D
+var root: Node
 
 const defaultTime = 1
 var minSpawnTime = 0.4
@@ -14,6 +16,8 @@ var minSpawnTime = 0.4
 func _ready():
 	level = get_tree().get_root()
 	parent = get_parent()
+	root = parent.get_parent()
+	cyclistAnim = root.get_node("Cyclist").get_node("AnimatedSprite2D")
 	scoreManager = parent.get_node("ScoreManager")
 	timer = get_node("CueSpawnTimer")
 	cueScene = preload("res://scenes/pedal_cue.tscn")
@@ -40,8 +44,8 @@ func reduceTime(amount: float):
 		# PUT MID SPEED ANIMATION HERE
 	
 	if timer.wait_time < minSpawnTime:
-		#TODO: HIGH SPEED ANIMATION
-		# PUT THE HIGHEST SPEED ANIMATION HERE
+		cyclistAnim.stop()
+		cyclistAnim.play("fast_moving")
 		return
 	timer.wait_time -= timer.wait_time*amount
 	

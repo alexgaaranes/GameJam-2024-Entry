@@ -31,10 +31,14 @@ func checkHP():
 		isGameOver = true
 		if execOnce:
 			execOnce = false
+			$"DieSFX".play()
 			cueSpawnManager.stopSpawn()
 			gameOverInstance = gameOverScene.instantiate()
 			gameOverInstance.setStats(scoreManager.getStats(),distanceManager.getDistance())
 			root.add_child(gameOverInstance)
+			parent.get_node("BGM").stop()
+			Global.bgm_player.play()
+			Global.bgm_player.volume_db = -25
 
 func getGameStatus():
 	return isGameOver

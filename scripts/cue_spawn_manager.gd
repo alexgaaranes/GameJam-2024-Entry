@@ -12,6 +12,8 @@ var root: Node
 const defaultTime = 1
 var minSpawnTime = 0.4
 
+var played = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	level = get_tree().get_root()
@@ -44,9 +46,15 @@ func reduceTime(amount: float):
 		# PUT MID SPEED ANIMATION HERE
 	
 	if timer.wait_time < minSpawnTime:
+		if not played:
+			$"PowerUpSFX".play()
+			played = true
 		cyclistAnim.stop()
 		cyclistAnim.play("fast_moving")
 		return
+	else:
+		played = false
+		
 	timer.wait_time -= timer.wait_time*amount
 	
 func resetTime():

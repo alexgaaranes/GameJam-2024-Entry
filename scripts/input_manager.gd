@@ -16,6 +16,9 @@ var damageColor: ColorRect
 var gameOverManager: Node
 var cyclist: Area2D
 var cyclistAnim: AnimatedSprite2D
+var penaltyColour: ColorRect
+
+var bgmIsPlayed: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,6 +34,8 @@ func _ready():
 	damageColor = root.get_node("DamageColor")
 	damageColor.visible = false
 	isPenalized = false
+	penaltyColour = root.get_node("PedalColumn").get_node("PenaltyColour")
+	penaltyColour.visible = false
 	timer = get_node("PenaltyTimer")
 
 
@@ -42,8 +47,13 @@ func _process(delta):
 		pedalColumnAnim.play("idle")
 	# Pedal Action
 	if Input.is_action_just_pressed("pedal") and not isPenalized:
+		if not bgmIsPlayed:
+			Global.bgm_player.stop()
+			parent.get_node("BGM").play()
+			bgmIsPlayed = true
 		pedalColumnAnim.play("tap")
 		detected = pedalColumn.detectedAreas
+		root.get_node("InputSFX").play()
 		if not detected.is_empty():
 			if hasMissed:
 				hasMissed = false
@@ -63,9 +73,12 @@ func _process(delta):
 			updateLabel("Miss")
 			await scoreManager.addMissed(1)
 			isPenalized = true
+			penaltyColour.visible = true
+			
 			hasMissed = true
 			damageColor.visible = true
 			timer.start()
+			root.get_node("HurtSFX").play()
 		
 	clearPassed()
 
@@ -73,6 +86,7 @@ func _process(delta):
 func _on_penalty_timer_timeout():
 	isPenalized = false
 	damageColor.visible = false
+	penaltyColour.visible = false
 
 # function for clearing cues that passed
 func clearPassed():
@@ -87,6 +101,8 @@ func clearPassed():
 		damageColor.visible = true
 		timer.start()
 		cue.free()
+		root.get_node("HurtSFX").play()
+		penaltyColour.visible = true
 
 # SUPPLEMENTARY FUNCTIONS
 func updateLabel(text: String):

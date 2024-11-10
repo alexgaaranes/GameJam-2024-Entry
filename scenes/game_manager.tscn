@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8ubotbc18a7t"]
+[gd_scene load_steps=10 format=3 uid="uid://b8ubotbc18a7t"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_k6gio"]
 [ext_resource type="Script" path="res://scripts/input_manager.gd" id="2_kxd6n"]
 [ext_resource type="Script" path="res://scripts/cue_spawn_manager.gd" id="3_mgrha"]
 [ext_resource type="Script" path="res://scripts/score_manager.gd" id="4_2puip"]
+[ext_resource type="AudioStream" uid="uid://vb71fc0kqhmg" path="res://assets/sfx/power-up.wav" id="4_qt136"]
 [ext_resource type="Script" path="res://scripts/distance_manager.gd" id="5_ub1gr"]
 [ext_resource type="Script" path="res://scripts/game_over_manager.gd" id="6_66vu0"]
+[ext_resource type="AudioStream" uid="uid://dr38u00412syl" path="res://assets/sfx/die.wav" id="7_2oa6k"]
+[ext_resource type="AudioStream" uid="uid://cd5ga3o6333hu" path="res://assets/bgm.mp3" id="9_vckvx"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_k6gio")
@@ -14,12 +17,15 @@ script = ExtResource("1_k6gio")
 script = ExtResource("2_kxd6n")
 
 [node name="PenaltyTimer" type="Timer" parent="InputManager"]
-wait_time = 0.25
+wait_time = 0.2
 
 [node name="CueSpawnManager" type="Node" parent="."]
 script = ExtResource("3_mgrha")
 
 [node name="CueSpawnTimer" type="Timer" parent="CueSpawnManager"]
+
+[node name="PowerUpSFX" type="AudioStreamPlayer2D" parent="CueSpawnManager"]
+stream = ExtResource("4_qt136")
 
 [node name="ScoreManager" type="Node" parent="."]
 script = ExtResource("4_2puip")
@@ -31,6 +37,14 @@ script = ExtResource("5_ub1gr")
 
 [node name="GameOverManager" type="Node" parent="."]
 script = ExtResource("6_66vu0")
+
+[node name="DieSFX" type="AudioStreamPlayer2D" parent="GameOverManager"]
+stream = ExtResource("7_2oa6k")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_vckvx")
+volume_db = -25.0
+parameters/looping = false
 
 [connection signal="timeout" from="InputManager/PenaltyTimer" to="InputManager" method="_on_penalty_timer_timeout"]
 [connection signal="timeout" from="CueSpawnManager/CueSpawnTimer" to="CueSpawnManager" method="_on_cue_spawn_timer_timeout"]

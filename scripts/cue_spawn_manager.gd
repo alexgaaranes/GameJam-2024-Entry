@@ -41,10 +41,6 @@ func _on_cue_spawn_timer_timeout():
 	timer.start()
 
 func reduceTime(amount: float):
-	#TODO: MID ANIMATION
-	#if timer.wait_time < minSpawnTime + 0.2:	# UNCOMMENT TO USE
-		# PUT MID SPEED ANIMATION HERE
-	
 	if timer.wait_time < minSpawnTime:
 		if not played:
 			$"PowerUpSFX".play()

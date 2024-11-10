@@ -19,6 +19,10 @@ config/stretch/aspect="expand"
 config/size/viewport_width=1280
 config/enabled=false
 
+[autoload]
+
+Global="*res://scripts/global.gd"
+
 [display]
 
 window/size/viewport_width=1280

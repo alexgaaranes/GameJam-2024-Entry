@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bhmqw75h2u8fk"]
+[gd_scene load_steps=21 format=3 uid="uid://bhmqw75h2u8fk"]
 
 [ext_resource type="PackedScene" uid="uid://b8ubotbc18a7t" path="res://scenes/game_manager.tscn" id="1_i7q76"]
 [ext_resource type="Script" path="res://scripts/main_level.gd" id="1_ne8dj"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dki4yf33hce12" path="res://scenes/cyclist.tscn" id="4_app16"]
 [ext_resource type="Script" path="res://scripts/tutorial.gd" id="5_dah53"]
 [ext_resource type="FontFile" uid="uid://cduo3hndy60wv" path="res://fonts/arcade_classic.TTF" id="5_gmnf5"]
+[ext_resource type="AudioStream" uid="uid://3wfp2nar0og1" path="res://assets/sfx/input.wav" id="11_5iunp"]
+[ext_resource type="AudioStream" uid="uid://dhs51mtaqbuer" path="res://assets/sfx/hurt.wav" id="12_ke04d"]
 
 [sub_resource type="GDScript" id="GDScript_0s01k"]
 script/source = "extends Control
@@ -533,6 +535,13 @@ scale = Vector2(5, 5)
 
 [node name="PedalColumn" parent="." instance=ExtResource("2_pe4of")]
 
+[node name="PenaltyColour" type="ColorRect" parent="PedalColumn"]
+offset_left = 343.0
+offset_top = 501.0
+offset_right = 416.0
+offset_bottom = 719.0
+color = Color(0.0392157, 0, 0, 0.713726)
+
 [node name="Label" type="Label" parent="."]
 offset_left = 56.0
 offset_top = 208.0
@@ -600,6 +609,7 @@ text = "Distance: "
 script = ExtResource("5_dah53")
 
 [node name="BlackFade" type="ColorRect" parent="Tutorial"]
+visible = false
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 1296.0
@@ -641,5 +651,11 @@ offset_top = -16.0
 offset_right = 1296.0
 offset_bottom = 736.0
 color = Color(1, 0, 0, 0.101961)
+
+[node name="InputSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_5iunp")
+
+[node name="HurtSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_ke04d")
 
 [connection signal="timeout" from="Tutorial/FadeOutTimer" to="Tutorial" method="_on_fade_out_timer_timeout"]
